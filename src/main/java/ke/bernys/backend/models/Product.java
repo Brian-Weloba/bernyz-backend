@@ -68,4 +68,144 @@ public class Product {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "categories_products", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
+
+    public Product() {
+    }
+
+    public Product(String name, String description, String image, Timestamp created_at, Timestamp updated_at,
+             String type) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.type = type;
+    }
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return String return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return String return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return String return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    /**
+     * @return Timestamp return the created_at
+     */
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    /**
+     * @param created_at the created_at to set
+     */
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
+    /**
+     * @return Timestamp return the updated_at
+     */
+    public Timestamp getUpdated_at() {
+        return updated_at;
+    }
+
+    /**
+     * @param updated_at the updated_at to set
+     */
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    /**
+     * @return boolean return the in_stock
+     */
+    public boolean isIn_stock() {
+        return in_stock;
+    }
+
+    /**
+     * @param in_stock the in_stock to set
+     */
+    public void setIn_stock(boolean in_stock) {
+        this.in_stock = in_stock;
+    }
+
+    /**
+     * @return String return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return List<Category> return the categories
+     */
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    /**
+     * @param categories the categories to set
+     */
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
 }
