@@ -209,4 +209,17 @@ public class Product {
         this.categories = categories;
     }
 
+    
+    /**
+     * The toString() method returns a string representation of the object
+     * 
+     * @return The toString() method is being returned.
+     */
+    @Override
+    public String toString() {
+        return "Product [categories=" + categories + ", created_at=" + created_at + ", description=" + description
+                + ", id=" + id + ", image=" + image + ", in_stock=" + in_stock + ", name=" + name + ", type=" + type
+                + ", updated_at=" + updated_at + "]";
+    }
+
 }

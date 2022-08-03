@@ -24,6 +24,11 @@ public class ProductRepository {
      * @throws IllegalArgumentException If the product is null.
      *
      */
+    /**
+     * If the name and description of the product are not null, then persist the product
+     * 
+     * @param product the product to be saved
+     */
     @Transactional
     public void saveProduct(Product product) throws IllegalArgumentException {
         // check if all the fields are filled
@@ -99,11 +104,19 @@ public class ProductRepository {
         }
     }
 
+    /**
+     * Delete all products from the database.
+     */
     @Transactional
     public void deleteAllProducts() {
         entityManager.createQuery("DELETE FROM Product").executeUpdate();
     }
 
+   /**
+    * Get all products from the database and return them as a list of Product objects.
+    * 
+    * @return A list of all products.
+    */
     @Transactional
     public List<Product> getAllProducts() {
         return entityManager.createQuery("SELECT p FROM Product p", Product.class).getResultList();
