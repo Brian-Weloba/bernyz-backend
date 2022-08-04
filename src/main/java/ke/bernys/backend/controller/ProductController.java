@@ -3,6 +3,7 @@ package ke.bernys.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -108,5 +109,23 @@ public class ProductController {
                 throw new InvalidArgumentsException(message);
             }
         }
+    }
+
+    @DeleteMapping("/products/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        try {
+            productService.deleteProduct(id);
+            return "Product deleted successfully";
+        } catch (Exception e) {
+            String message = "Error:" + e.getMessage();
+            throw new ItemNotFoundException(message);
+        }
+    }
+
+    @DeleteMapping("/products/delete/all")
+    public String deleteAllProducts() {
+            productService.deleteAllProducts();
+            return "All products deleted";
+       
     }
 }
