@@ -28,7 +28,7 @@ on:
             POSTGRES_PASSWORD: Flamingo4
             POSTGRES_DB: bernyz
           ports:
-            - 5432/tcp
+            - 5432:5432/tcp
           options: >-
             --health-cmd pg_isready
             --health-interval 10s
