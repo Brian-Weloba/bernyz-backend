@@ -1,11 +1,13 @@
 package ke.bernys.backend.repository;
 
 import java.util.List;
+import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
 
 import org.springframework.stereotype.Repository;
 
@@ -69,17 +71,42 @@ public class ProductRepository {
      * @throws EntityNotFoundException  If the product does not exist.
      */
     @Transactional
-    public Product updateProduct(Product product) throws IllegalArgumentException, EntityNotFoundException {
-        // check if the product is null
-        if (product == null) {
+    public Product updateProduct( String id,  Product product) throws IllegalArgumentException, EntityNotFoundException {
+        // // check if the product is null
+        // if (product == null) {
+        //     throw new IllegalArgumentException("The product must be filled");
+        // }
+        // // check if the product exists
+        // else if (entityManager.find(Product.class, product.getId()) == null) {
+        //     throw new EntityNotFoundException("The product does not exist");
+        // } else {
+        //     entityManager.merge(product);
+        //     return product;
+        // }
+        // Product productToUpdate = getProduct(Long.parseLong(id));
+        // productToUpdate.setName(product.getName());
+        // productToUpdate.setDescription(product.getDescription());
+        // productToUpdate.setImage(product.getImage());
+        // productToUpdate.setType(product.getType());
+        // entityManager.merge(productToUpdate);
+        // return productToUpdate;
+        //check if product is null
+        if(product == null){
             throw new IllegalArgumentException("The product must be filled");
         }
-        // check if the product exists
-        else if (entityManager.find(Product.class, product.getId()) == null) {
+        //check if product exists
+        else if(entityManager.find(Product.class, Long.parseLong(id)) == null){
             throw new EntityNotFoundException("The product does not exist");
-        } else {
-            entityManager.merge(product);
-            return product;
+        }
+        else{
+            Product productToUpdate = getProduct(Long.parseLong(id));
+            productToUpdate.setName(product.getName());
+            productToUpdate.setDescription(product.getDescription());
+            productToUpdate.setImage(product.getImage());
+            productToUpdate.setType(product.getType());
+            productToUpdate.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+            entityManager.merge(productToUpdate);
+            return productToUpdate;
         }
     }
 

@@ -45,8 +45,8 @@ public class ProductService {
      * @param product The product object that you want to update.
      * @return The product that was updated.
      */
-    public Product updateProduct(Product product) {
-        return productRepository.updateProduct(product);
+    public Product updateProduct(String id , Product product) {
+        return productRepository.updateProduct(id,product);
     }
 
    /**

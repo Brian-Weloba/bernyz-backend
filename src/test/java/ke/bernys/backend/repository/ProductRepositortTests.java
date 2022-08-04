@@ -61,7 +61,7 @@ public class ProductRepositortTests {
     public void testUpdateProductSuccessfully() {
         Product product = productRepository.getProduct(productId);
         product.setType("Vodka");
-        productRepository.updateProduct(product);
+        productRepository.updateProduct(productId.toString(), product);
 
         Product product2 = productRepository.getProduct(productId);
         assertEquals("Vodka", product2.getType());

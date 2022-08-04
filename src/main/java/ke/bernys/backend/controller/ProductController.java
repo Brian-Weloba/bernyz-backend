@@ -95,9 +95,9 @@ public class ProductController {
     * @return A string representation of the product that was updated.
     */
     @PutMapping("/products/update/{id}")
-    public String updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    public String updateProduct(@PathVariable String id, @RequestBody Product product) {
         try {
-            productService.updateProduct(product);
+            productService.updateProduct(id, product);
             return "Product updated successfully:" + product.toString();
         } catch (Exception e) {
             if (e instanceof ItemNotFoundException) {
