@@ -32,8 +32,8 @@ public class ProductRepository {
     @Transactional
     public void saveProduct(Product product) throws IllegalArgumentException {
         // check if all the fields are filled
-        if (product.getName() == null || product.getDescription() == null) {
-            throw new IllegalArgumentException("The name and description of the product must be filled");
+        if (product.getName() == null || product.getDescription() == null ||product.getType() == null) {
+            throw new IllegalArgumentException("The name, type and description of the product must be filled");
         }
         entityManager.persist(product);
     }

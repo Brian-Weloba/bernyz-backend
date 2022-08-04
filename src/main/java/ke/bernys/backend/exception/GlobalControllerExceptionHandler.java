@@ -12,9 +12,15 @@ import org.springframework.http.ResponseEntity;
 @RestControllerAdvice
 public class GlobalControllerExceptionHandler {
     
-    @ExceptionHandler(ProductNotFoundException.class)
+    @ExceptionHandler(ItemNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> handleProductNotFoundException(ProductNotFoundException ex) {
+    public ResponseEntity<String> handleItemNotFoundException(ItemNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidArgumentsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleInvalidArgumentsException(InvalidArgumentsException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }
