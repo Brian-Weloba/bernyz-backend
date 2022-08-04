@@ -34,7 +34,9 @@ public class ProductService {
      * @return A Product object.
      */
     public Product getProduct(Long id) {
-        return productRepository.getProduct(id);
+
+            return productRepository.getProduct(id);
+
     }
 
     /**

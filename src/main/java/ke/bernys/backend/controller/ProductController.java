@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ke.bernys.backend.exception.ProductNotFoundException;
 import ke.bernys.backend.models.Product;
 import ke.bernys.backend.service.ProductService;
 
@@ -27,8 +28,13 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Product getProduct(Long id) {
-        return productService.getProduct(id);
+    public Product getProduct(Long id){
+        try {
+            return productService.getProduct(id);
+        } catch (Exception e) {
+            String message = e.getMessage();
+            throw new ProductNotFoundException(message);
+        }
     }
 
     @PostMapping("/products/add")
