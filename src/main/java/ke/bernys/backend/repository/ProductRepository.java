@@ -72,25 +72,6 @@ public class ProductRepository {
      */
     @Transactional
     public Product updateProduct( String id,  Product product) throws IllegalArgumentException, EntityNotFoundException {
-        // // check if the product is null
-        // if (product == null) {
-        //     throw new IllegalArgumentException("The product must be filled");
-        // }
-        // // check if the product exists
-        // else if (entityManager.find(Product.class, product.getId()) == null) {
-        //     throw new EntityNotFoundException("The product does not exist");
-        // } else {
-        //     entityManager.merge(product);
-        //     return product;
-        // }
-        // Product productToUpdate = getProduct(Long.parseLong(id));
-        // productToUpdate.setName(product.getName());
-        // productToUpdate.setDescription(product.getDescription());
-        // productToUpdate.setImage(product.getImage());
-        // productToUpdate.setType(product.getType());
-        // entityManager.merge(productToUpdate);
-        // return productToUpdate;
-        //check if product is null
         if(product == null){
             throw new IllegalArgumentException("The product must be filled");
         }

@@ -2,8 +2,7 @@ package ke.bernys.backend.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.sql.Timestamp;
-
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,12 @@ import ke.bernys.backend.models.Product;
 public class ProductRepositortTests {
 
     private Long productId;
+    private static ProductRepository productRepository;
 
     @Autowired
-    private ProductRepository productRepository;
+    public void setProductRepository(ProductRepository productRepository) {
+        ProductRepositortTests.productRepository = productRepository;
+    }
 
     @BeforeEach
     public void addProduct() {
@@ -28,12 +30,15 @@ public class ProductRepositortTests {
         product.setName("Test Product");
         product.setDescription("Test Description");
         product.setImage("Test Image");
-        product.setCreated_at(new Timestamp(System.currentTimeMillis()));
-        product.setUpdated_at(new Timestamp(System.currentTimeMillis()));
         product.setType("Gin");
         productRepository.saveProduct(product);
 
         productId = product.getId();
+    }
+
+    @AfterAll
+    public static void clearProducts() {
+        productRepository.deleteAllProducts();
     }
 
     @Test
@@ -42,8 +47,6 @@ public class ProductRepositortTests {
         product2.setName("Test Product2");
         product2.setDescription("Test Description2");
         product2.setImage("Test Image2");
-        product2.setCreated_at(new Timestamp(System.currentTimeMillis()));
-        product2.setUpdated_at(new Timestamp(System.currentTimeMillis()));
         product2.setType("Vodka");
         productRepository.saveProduct(product2);
 
@@ -94,8 +97,7 @@ public class ProductRepositortTests {
         product2.setName("Test Product 2");
         product2.setDescription("Test Description 2");
         product2.setImage("Test Image 2");
-        product2.setCreated_at(new Timestamp(System.currentTimeMillis()));
-        product2.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+
         product2.setType("Vodka");
         productRepository.saveProduct(product2);
 

@@ -71,15 +71,17 @@ public class Product {
     private List<Category> categories;
 
     public Product() {
+        this.created_at = new Timestamp(System.currentTimeMillis());
+        this.updated_at = new Timestamp(System.currentTimeMillis());
     }
 
-    public Product(String name, String description, String image, Timestamp created_at, Timestamp updated_at,
+    public Product(String name, String description, String image, Timestamp updated_at,
              String type) {
         this.name = name;
         this.description = description;
         this.image = image;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.created_at = new Timestamp(System.currentTimeMillis());
+        this.updated_at = new Timestamp(System.currentTimeMillis());
         this.type = type;
     }
 
