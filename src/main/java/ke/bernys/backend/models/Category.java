@@ -1,5 +1,6 @@
 package ke.bernys.backend.models;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -48,7 +49,60 @@ public class Category {
     )
     private List<Product> products;
 
+    // A timestamp that is set to the current time when the object is created.
+    private Timestamp created_at;
+   // A timestamp that is set to the current time when the object is created.
+    private Timestamp updated_at;
+
+    public Category() {
+    }
+
+    // This is a constructor that takes in two parameters, name and description. It then sets the name
+    // and description fields to the values passed in. It then sets the created_at and updated_at
+    // fields to the current time.
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.created_at = new Timestamp(System.currentTimeMillis());
+        this.updated_at = new Timestamp(System.currentTimeMillis());
+    }
     
+    /**
+     * This function returns the created_at timestamp
+     * 
+     * @return The created_at field is being returned.
+     */
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    /**
+     * This function sets the created_at variable to the value of the created_at variable passed into
+     * the function
+     * 
+     * @param created_at The date and time the tweet was created.
+     */
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
+    /**
+     * This function returns the updated_at value of the object
+     * 
+     * @return The updated_at field is being returned.
+     */
+    public Timestamp getUpdated_at() {
+        return updated_at;
+    }
+
+    /**
+     * This function sets the updated_at field of the object to the current time
+     * 
+     * @param updated_at timestamp with time zone
+     */
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
+    }
 
     /**
      * @return Long return the id
