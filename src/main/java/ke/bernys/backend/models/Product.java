@@ -57,12 +57,15 @@ public class Product {
      * Whether or not the product is in stock.
      * This is not stored in the database.
      */
+    //TODO: set in stock dynamically based on the quantity of the poduct in its variants.
     @Transient
     private boolean in_stock;
     /**
      * The type of product eg. gin, rum, vodka, etc.
      */
     private String type;
+
+    //TODO: link categories to products.
     /**
      * The categories that the product belongs to.
      */
