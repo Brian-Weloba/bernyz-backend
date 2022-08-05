@@ -30,7 +30,7 @@ import ke.bernys.backend.service.ProductService;
  * 
  */
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
     /**
@@ -45,7 +45,7 @@ public class ProductController {
      *
      * @return A list of Product objects.
      */
-    @GetMapping("/products")
+    @GetMapping("/")
     public List<Product> getProducts() {
         return productService.getAllProducts();
     }
@@ -59,7 +59,7 @@ public class ProductController {
      * @throws ItemNotFoundException If the product is not found.
      *
      */
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public Product getProduct(Long id) {
         try {
             return productService.getProduct(id);
@@ -77,7 +77,7 @@ public class ProductController {
     * @return A string representation of the product that was added.
     *
     */
-    @PostMapping("/products/add")
+    @PostMapping("/add")
     public String addProduct(@RequestBody Product product) {
         try {
             productService.saveProduct(product);
@@ -95,7 +95,7 @@ public class ProductController {
     * @param product The product object that is passed in the request body.
     * @return A string representation of the product that was updated.
     */
-    @PutMapping("/products/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateProduct(@PathVariable String id, @RequestBody Product product) {
         try {
             productService.updateProduct(id, product);
@@ -111,7 +111,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/products/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {
         try {
             productService.deleteProduct(id);
@@ -122,7 +122,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/products/delete/all")
+    @DeleteMapping("/delete/all")
     public String deleteAllProducts() {
             productService.deleteAllProducts();
             return "All products deleted";
