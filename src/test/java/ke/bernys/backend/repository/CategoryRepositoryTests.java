@@ -50,7 +50,7 @@ public class CategoryRepositoryTests {
     public void testUpdateCategorySuccessfully() {
         Category category = categoryRepository.getCategory(categoryId);
         category.setName("Vodka");
-        categoryRepository.updateCategory(category, categoryId);
+        categoryRepository.updateCategory( categoryId, category);
 
         Category category2 = categoryRepository.getCategory(categoryId);
         assertEquals("Vodka", category2.getName());

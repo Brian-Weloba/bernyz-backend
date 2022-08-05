@@ -68,7 +68,7 @@ public class CategoryRepository {
      *
      */
     @Transactional
-    public Category updateCategory(Category category, Long id)
+    public Category updateCategory(Long id , Category category )
             throws IllegalArgumentException, EntityNotFoundException {
         Category categoryToUpdate = entityManager.find(Category.class, id);
         if (id == null) {
