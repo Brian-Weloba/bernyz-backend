@@ -66,20 +66,22 @@ public class Product {
     /**
      * The categories that the product belongs to.
      */
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "categories_products", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
     public Product() {
+        this.created_at = new Timestamp(System.currentTimeMillis());
+        this.updated_at = new Timestamp(System.currentTimeMillis());
     }
 
-    public Product(String name, String description, String image, Timestamp created_at, Timestamp updated_at,
+    public Product(String name, String description, String image, Timestamp updated_at,
              String type) {
         this.name = name;
         this.description = description;
         this.image = image;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.created_at = new Timestamp(System.currentTimeMillis());
+        this.updated_at = new Timestamp(System.currentTimeMillis());
         this.type = type;
     }
 
