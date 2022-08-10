@@ -3,6 +3,7 @@ package ke.bernys.backend.models;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author Brian Weloba
@@ -69,7 +72,8 @@ public class Product {
     /**
      * The categories that the product belongs to.
      */
-    @ManyToMany(fetch = FetchType.EAGER)
+// Used to ignore the categories field when the product is serialized to JSON.
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "categories_products", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
@@ -77,6 +81,7 @@ public class Product {
         this.created_at = new Timestamp(System.currentTimeMillis());
         this.updated_at = new Timestamp(System.currentTimeMillis());
     }
+    
 
     public Product(String name, String description, String image, Timestamp updated_at,
              String type) {
