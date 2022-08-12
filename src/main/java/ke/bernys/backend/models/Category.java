@@ -7,20 +7,21 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * @author Brian Weloba
  * @version 1.0
  * @since 1.0
  * 
- *       This class represents a category in the database
+ *        This class represents a category in the database
  *
  */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Category {
     /**
      * The id of the category.
@@ -41,24 +42,23 @@ public class Category {
     /**
      * The products in the category.
      */
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "categories_products",
-        joinColumns = @JoinColumn(name = "category_id"),
-        inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
     private List<Product> products;
 
     // A timestamp that is set to the current time when the object is created.
     private Timestamp created_at;
-   // A timestamp that is set to the current time when the object is created.
+    // A timestamp that is set to the current time when the object is created.
     private Timestamp updated_at;
 
     public Category() {
+        this.created_at = new Timestamp(System.currentTimeMillis());
+        this.updated_at = new Timestamp(System.currentTimeMillis());
     }
 
-    // This is a constructor that takes in two parameters, name and description. It then sets the name
-    // and description fields to the values passed in. It then sets the created_at and updated_at
+    // This is a constructor that takes in two parameters, name and description. It
+    // then sets the name
+    // and description fields to the values passed in. It then sets the created_at
+    // and updated_at
     // fields to the current time.
     public Category(String name, String description) {
         this.name = name;
@@ -66,7 +66,7 @@ public class Category {
         this.created_at = new Timestamp(System.currentTimeMillis());
         this.updated_at = new Timestamp(System.currentTimeMillis());
     }
-    
+
     /**
      * This function returns the created_at timestamp
      * 
@@ -77,7 +77,8 @@ public class Category {
     }
 
     /**
-     * This function sets the created_at variable to the value of the created_at variable passed into
+     * This function sets the created_at variable to the value of the created_at
+     * variable passed into
      * the function
      * 
      * @param created_at The date and time the tweet was created.
@@ -169,7 +170,8 @@ public class Category {
      */
     @Override
     public String toString() {
-        return "Category [description=" + description + ", id=" + id + ", name=" + name + ", products=" + products + "]";
+        return "Category [description=" + description + ", id=" + id + ", name=" + name + ", products=" + products
+                + "]";
     }
 
     /**
@@ -228,6 +230,5 @@ public class Category {
         result = prime * result + ((products == null) ? 0 : products.hashCode());
         return result;
     }
-
 
 }

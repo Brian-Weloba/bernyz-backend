@@ -1,5 +1,6 @@
 package ke.bernys.backend.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -78,6 +79,7 @@ public class CategoryRepository {
         } else {
             categoryToUpdate.setName(category.getName());
             categoryToUpdate.setDescription(category.getDescription());
+            categoryToUpdate.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             entityManager.merge(categoryToUpdate);
             return categoryToUpdate;
         }

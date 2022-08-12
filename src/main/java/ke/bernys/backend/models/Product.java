@@ -14,7 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * @author Brian Weloba
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "products")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Product {
     /**
      * The id of the product.
@@ -67,13 +69,11 @@ public class Product {
      * The type of product eg. gin, rum, vodka, etc.
      */
     private String type;
-
-    //TODO: link categories to products.
     /**
      * The categories that the product belongs to.
      */
 // Used to ignore the categories field when the product is serialized to JSON.
-    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "categories_products", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
