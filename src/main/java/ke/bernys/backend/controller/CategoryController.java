@@ -18,7 +18,7 @@ import ke.bernys.backend.models.Category;
 import ke.bernys.backend.service.CategoryService;
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/v1/categories")
 public class CategoryController {
 
     @Autowired
