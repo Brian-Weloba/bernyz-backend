@@ -9,19 +9,8 @@ module.exports = {
     path: __dirname,
     filename: "./src/main/resources/static/built/bundle.js",
   },
-//   resolve: {
-//     extensions: ["", ".js"],
-//     alias: {
-//       react: "dummyReact.js",
-//     },
-//   },
-  // externals: {
-  //   react: "React",
-  //   "react-dom": "ReactDOM",
-  // },
  
   module: {
-    // noParse: /react/,
     rules: [
       {
         test: path.join(__dirname, "."),
@@ -37,6 +26,17 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
       },
     ],
   },
