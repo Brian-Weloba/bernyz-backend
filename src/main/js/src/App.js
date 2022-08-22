@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-const React = require("react");
+import React from 'react';
 import './App.css';
 
 export default function App() {
