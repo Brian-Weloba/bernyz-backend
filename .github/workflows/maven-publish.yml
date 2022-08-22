@@ -44,6 +44,6 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy --file pom.xml
+      run: mvn deploy --file pom.xml -DaltDeploymentRepository=internal.repo::default::file:///home/bernyz
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
