@@ -30,7 +30,7 @@ import ke.bernys.backend.service.ProductService;
  * 
  */
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/v1/products")
 public class ProductController {
 
     /**
